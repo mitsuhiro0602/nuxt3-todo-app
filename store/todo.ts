@@ -1,19 +1,20 @@
-import { defineStore, acceptHMRUpdate } from 'pinia'
+import { defineStore } from 'pinia'
 import { v4 as uuid } from 'uuid'
+
 export interface Todo {
     id: string,
-    title: string,
+    label: string,
     done: boolean,
     createdAt: Date,
     updatedAt: Date
 }
 
 export interface TodoAdd {
-    title: string,
+    label: string,
 }
 
 export interface TodoUpdate {
-    title?: string
+    label?: string
     done?: boolean
 }
 
@@ -34,15 +35,15 @@ const getters = {
         (a: Todo, b: Todo) => a.createdAt.getTime() - b.createdAt.getTime())
 };
 const actions = {
-    add(partialTodo: TodoAdd) {
-        const todo: Todo = {
+    add(todo: TodoAdd) {
+        const itemTodoAdd: Todo = {
             id: uuid(),
-            ...partialTodo,
+            ...todo,
             done: false,
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        this.items.push(todo);
+        this.items.push(itemTodoAdd);
     },
     remove(id: string) {
         this.items = this.items.filter(item => item.id !== id);
