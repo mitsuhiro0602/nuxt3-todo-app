@@ -30,9 +30,10 @@ const getters = {
     getById: (state: TodoState) => (id: string) => {
         return state.items.find((item: Todo) => item.id === id)
     },
-    getOrderedTodos: (state: TodoState) =>
-        [...state.items].sort(
-        (a: Todo, b: Todo) => a.createdAt.getTime() - b.createdAt.getTime())
+    getSortedTodos: (state: TodoState) => {
+        return [...state.items].sort(
+            (a: Todo, b: Todo) => new Date(a.createdAt).getTime() - (b.createdAt).getTime())
+    }
 };
 const actions = {
     add(todo: TodoAdd) {
@@ -58,3 +59,6 @@ export const useTodoStore = defineStore('todoStore', {
     getters,
     actions
 });
+
+export interface Todos {
+}
