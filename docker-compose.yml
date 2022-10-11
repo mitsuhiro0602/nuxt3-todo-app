@@ -1,0 +1,40 @@
+version: '3'
+services:
+  db:
+    # 起動するイメージを指定する
+    # 使えるimageをdokcer-hubで探さないとエラーが出る
+    image: mysql:8.0.30
+
+    # 環境変数を設定する
+    environment:
+      - MYSQL_ROOT_HOST=${DB_ROOT_HOST}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+
+    # ホスト側のポート：コンテナのポート
+    ports:
+      - '3307:3306'
+
+    # ボリュームバインド
+    platform: linux/amd64
+    volumes:
+      - ./db/conf:/etc/mysql/conf.d/:ro
+      - mysqldata:/var/lib/mysql
+      - ./mysql/:/docker-entrypoint-initdb.d/
+
+    build:
+      context: .
+      dockerfile: ./db/docker/Dockerfile
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+    # 使用するネットワーク
+    networks:
+      - backend
+networks:
+  backend:
+
+volumes:
+  mysqldata:

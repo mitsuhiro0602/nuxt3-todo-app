@@ -73,3 +73,14 @@ npx tailwindcss init
 - Line : ソースファイルの各実行可能行が実行されたか
 - Uncovered Line: Lineの対象を示す行番号
 # nuxt3-todo-app
+
+
+### docker-composeの起動
+```docker
+docker-compose up
+```
+
+### DBにログインする
+```docker
+docker-compose exec db /bin/bash
+```
