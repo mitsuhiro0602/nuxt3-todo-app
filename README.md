@@ -84,3 +84,12 @@ docker-compose up
 ```docker
 docker-compose exec db /bin/bash
 ```
+### Prismaの操作
+```
+npx prisma db push
+```
+
+### DBのURL  
+例)
+username:password@host:port/databsename
+DATABASE_URL="mysql://prisma_user:prisma_pass@localhost:3306/prisma_db"
