@@ -83,6 +83,13 @@ docker-compose up
 ### DBにログインする
 ```docker
 docker-compose exec db /bin/bash
+
+### prisma/clientのインストール
+```
+npm i @prisma/client
+```
+
+
 ```
 ### Prismaの操作
 ```
@@ -93,3 +100,8 @@ npx prisma db push
 例)
 username:password@host:port/databsename
 DATABASE_URL="mysql://prisma_user:prisma_pass@localhost:3306/prisma_db"
+
+### prismaをgenerate
+```prisma
+npx prisma generate
+```

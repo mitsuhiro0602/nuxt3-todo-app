@@ -90,7 +90,7 @@ describe('useTodoStore', () => {
         // @ts-ignore
         store.items = items;
 
-        const orderedTodos = store.getOrderedTodos
+        const orderedTodos = store.getSortedTodos
 
         expect(orderedTodos[0].createdAt.getFullYear()).toBe(2019);
         expect(orderedTodos[1].createdAt.getFullYear()).toBe(2020);

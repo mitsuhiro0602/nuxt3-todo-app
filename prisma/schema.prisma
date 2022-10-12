@@ -22,7 +22,7 @@ model Todo {
 model User {
 	id String @id
 	email String @unique
-	psasword String
+	password String
 	createdAt DateTime @default(now())
 	updatedAt DateTime @updatedAt()
 	todos Todo[]
